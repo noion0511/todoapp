@@ -1,31 +1,13 @@
 import { log } from './utils';
 import './todo.css';
 import { printTodos } from './print-todos';
+import { init as initForm } from './form';
 
 const todos = [
     { title: 'HTML', isDone: true },
     { title: 'JS', isDone: true },
     { title: 'React', isDone: true },
   ];
-
-const $form = document.querySelector('.new-task');
-const $input = document.querySelector('.new-task > input');
-const $todos = document.querySelector('#todos');
-
-const checkTodo = (event) => {
-    event.preventDefault();
-    console.log($input.value);
-
-    const todo = {title: $input.value, isDone: false};
-    todos.push({todo});
-    console.log(todos)
-
-    //input 초기화
-    $input.value = '';
-
-    //todos 출력
-    print();
-};
 
 const deleteTodo = () => {
     console.log('delete');
@@ -36,6 +18,8 @@ const deleteTodo = () => {
 
 const toggleTodo = () => {
     console.log('toggle');
+    //index에 맞는 todo isDone 반전?
+    todos[index].isDone = !todos[index].isDone
 }
 
 const print = () => {
@@ -53,4 +37,5 @@ document.body.addEventListener('click', (event) => {
     }
 })
 
+initForm(todos)
 print();
